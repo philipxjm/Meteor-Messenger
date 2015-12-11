@@ -1,0 +1,208 @@
+    /* CSS declarations go here */
+@import "compass/css3";
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+}
+
+.app-wrapper {
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+#header {
+    height: 100%;
+}
+
+.chat-container {
+    height: 100%;
+    padding: 0px;
+    background-color: gray;
+    overflow: hidden;
+}
+
+.friendlist-container {
+    background-color: lightgray;
+    height: 100%;
+    border-right: 1px solid darkgray;
+    border-top: 1px solid darkgray;
+}
+
+.messages-box {
+    padding: 5px;
+    background-color: #ffffff;
+    border: 1px solid darkgray;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.information-container {
+    margin: 0px;
+    width: 100%;
+    height: 8%;
+    overflow: hidden;
+}
+
+#profpic {
+    height: 100%;
+    width: 6%;
+}
+
+#chat-information-container {
+    height: 100%;
+    width: 94%;
+    float: right;
+}
+
+#chatname {
+    height: 100%;
+    text-align: center;
+    margin: 0px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#chatname-text {
+    font-size: 1.4em;
+    color: black;
+    font-family: 'Georgia', Times, serif;
+}
+
+#chatstatus {
+    height: 100%;
+    text-align: center;
+    margin: 0px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#chatstatus-text {
+    font-size: 1.0em;
+    color: darkgray;
+}
+
+.profileinfo-container {
+    height: 100%;
+    background-color: white;
+}
+
+.chatarea-container {
+    height: 100%;
+    width: 100%;
+}
+
+.message-container {
+    height: 86%;
+    overflow: hidden;
+}
+
+.input-container {
+    height: 6%;
+    overflow: hidden;
+}
+
+.input-items {
+    vertical-align: top;
+    padding: 0px;
+    height: 100%;
+}
+
+.sendMsg {
+    margin: 0;
+    width: 100%;
+}
+
+.message-bubble {
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-weight: normal;
+    max-width: 255px;
+    word-wrap: break-word;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    line-height: 24px;
+    clear: both;
+}
+
+.message-bubble.to-bubble{
+    position:relative;
+    padding:7px 14px;
+    color:white;
+    background:#0B93F6;
+    border-radius:25px;
+    float: right;
+}
+
+.message-bubble.to-bubble:before {
+    content:"";
+    position:absolute;
+    z-index:-1;
+    bottom:-2px;
+    right:-7px;
+    height:20px;
+    border-right:20px solid #0B93F6;
+    border-bottom-left-radius: 16px 14px;
+    -webkit-transform:translate(0, -2px);
+}
+
+.message-bubble.to-bubble:after {
+    content:"";
+    position:absolute;
+    z-index:1;
+    bottom:-2px;
+    right:-56px;
+    width:26px;
+    height:20px;
+    background:white;
+    border-bottom-left-radius: 10px;
+    -webkit-transform:translate(-30px, -2px);
+}
+
+.message-bubble.from-bubble{
+    position:relative;
+    padding:10px 20px;
+    background:#E5E5EA;
+    border-radius:25px;
+    color: black;
+    float: left;
+}
+
+.message-bubble.from-bubble:before {
+    content:"";
+    position:absolute;
+    z-index:2;
+    bottom:-2px;
+    left:-7px;
+    height:20px;
+    border-left:20px solid #E5E5EA;
+    border-bottom-right-radius: 16px 14px;
+    -webkit-transform:translate(0, -2px);
+}
+
+.message-bubble.from-bubble:after {
+    content:"";
+    position:absolute;
+    z-index:3;
+    bottom:-2px;
+    left:4px;
+    width:26px;
+    height:20px;
+    background:white;
+    border-bottom-right-radius: 10px;
+    -webkit-transform:translate(-30px, -2px);
+}

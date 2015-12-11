@@ -1,0 +1,72 @@
+<head>
+    <title>MeteorMessenger</title>
+</head>
+
+<body>
+    {{> nav}} {{> chat}}
+</body>
+<template name="nav">
+    <nav class="navbar navbar-default">
+        <a class="navbar-brand" href="#">Meteor Messenger</a>
+        <p class="navbar-text">A Messenger mimic made in Meteor JS</p>
+        <div id="login" class="navbar-text pull-right">{{> loginButtons align="right"}}</div>
+    </nav>
+</template>
+<template name="chat">
+    <div class="row container-fluid app-wrapper">
+        <div class="col-md-2 friendlist-container">
+            {{> friendlist}}
+        </div>
+        <div class="col-md-10 chat-container">
+            <div class="information-container row">
+                {{> informationbar}}
+            </div>
+            <div class="chatarea-container">
+                <div class="message-container">
+                    {{> messages}}
+                </div>
+                <div class="input-container">
+                    {{> input}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<template name="friendlist">
+    <div>
+    </div>
+</template>
+<template name="friend">
+</template>
+<template name="input">
+    <div class="col-xs-11 input-items">
+        <input class="form-control input-items" type="text" id="msg" placeholder="Message here..." />
+    </div>
+    <div class="col-xs-1 input-items">
+        <input class="btn btn-primary sendMsg input-items" type="button" value="Send" />
+    </div>
+</template>
+<template name="profilepic">
+    <img id="profimg" src="" alt="profpic" />
+</template>
+<template name="informationbar">
+    <div class="profileinfo-container">
+        {{> profilepic}}
+        <div id="chat-information-container">
+            <div id="chatname" class="col-xs-2">
+                <span id="chatname-text">Philip Xu</span>
+            </div>
+            <div id="chatstatus" class="col-xs-1">
+                <span id="chatstatus-text">Active</span>
+            </div>
+        </div>
+    </div>
+</template>
+<template name="messages">
+    <div class="messages-box" id="messages">
+        {{#each messages}} {{> message}} {{/each}}
+    </div>
+</template>
+<template name="message">
+    <div class="message-bubble to-bubble">{{msg}}</div>
+</template>
