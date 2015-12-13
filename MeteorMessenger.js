@@ -22,33 +22,50 @@ if (Meteor.isClient) {
     });
 
     function sendMessage() {
-        var message = document.getElementById("msg");
-        Messages.insert({
-            user: Meteor.user().username,
-            chat_target: Session.get("chat_target"),
-            msg: message.value,
-            ts: new Date()
-        });
-        message.value = "";
-        message.focus();
+        var messagebox = document.getElementById("msg");
+        if (messagebox.value) {
+            Messages.insert({
+                user: Meteor.user().username,
+                chat_target: Session.get("chat_target"),
+                msg: messagebox.value,
+                ts: new Date()
+            });
+            messagebox.value = "";
+        };
+        messagebox.focus();
+    }
+
+    Template.messages.rendered = function() {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('body').tooltop({selector: '.message-bubble'});
     }
 
     Template.messages.helpers({
         messages: function() {
-            return Messages.find({
-                user: Meteor.user().username,
-                chat_target: Session.get("chat_target")
-            }, {
-                sort: {
-                    ts: -1
-                }
-            });
-        }
-    });
-
-    Template.message.helpers({
+            try {
+                return Messages.find({
+                    $or: [{
+                        user: Meteor.user().username
+                    }, {
+                        chat_target: Meteor.user().username
+                    }]
+                }, {
+                    sort: {
+                        ts: -1
+                    }
+                });
+            } catch (err) {
+                // ignore
+            }
+        },
         timestamp: function() {
             return this.ts.toLocaleString();
+        },
+        messageFromToBubbleClass: function() {
+            return this.user == Meteor.user().username ? 'to-bubble' : 'from-bubble';
+        },
+        messageFromToBlockClass: function() {
+            return this.user == Meteor.user().username ? 'message-block-to' : 'message-block-from';
         }
     });
 

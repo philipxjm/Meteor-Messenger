@@ -3,7 +3,9 @@
 </head>
 
 <body>
-    {{> nav}} {{> chat}}
+    <div class="bodywrapper">
+        {{> nav}} {{> chat}}
+    </div>
 </body>
 <template name="nav">
     <nav class="navbar navbar-default">
@@ -13,21 +15,19 @@
     </nav>
 </template>
 <template name="chat">
-    <div class="row container-fluid app-wrapper">
+    <div class="app-container">
         <div class="col-md-2 friendlist-container">
             {{> friendlist}}
         </div>
         <div class="col-md-10 chat-container">
-            <div class="information-container row">
+            <div class="information-container">
                 {{> informationbar}}
             </div>
-            <div class="chatarea-container">
-                <div class="message-container">
-                    {{> messages}}
-                </div>
-                <div class="input-container">
-                    {{> input}}
-                </div>
+            <div class="message-container">
+                {{> messages}}
+            </div>
+            <div class="input-container">
+                {{> input}}
             </div>
         </div>
     </div>
@@ -46,9 +46,6 @@
         <input class="btn btn-primary sendMsg input-items" type="button" value="Send" />
     </div>
 </template>
-<template name="profilepic">
-    <img id="profimg" src="" alt="profpic" />
-</template>
 <template name="informationbar">
     <div class="profileinfo-container">
         {{> profilepic}}
@@ -64,9 +61,15 @@
 </template>
 <template name="messages">
     <div class="messages-box" id="messages">
-        {{#each messages}} {{> message}} {{/each}}
+        <div class="message-block-container">
+            {{#each messages}}
+            <div class="{{messageFromToBlockClass}}">
+                <div class="message-bubble {{messageFromToBubbleClass}}" data-toggle="tooltip" data-placement="left" title="{{timestamp}}" data-original-title="{{timestamp}}"><span>{{msg}}</span></div>
+            </div>
+            {{/each}}
+        </div>
     </div>
 </template>
-<template name="message">
-    <div class="message-bubble to-bubble">{{msg}}</div>
+<template name="profilepic">
+    <img id="profimg" src="" alt="profpic" />
 </template>
