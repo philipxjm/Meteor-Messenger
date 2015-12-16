@@ -6,12 +6,19 @@
     <div class="bodywrapper">
         {{> nav}} {{> chat}}
     </div>
-    {{> over}}
+    {{> totalOverlay}}
 </body>
-<template name="over">
+<template name="totalOverlay">
     <div class="overlay {{overlay_class}}">
         <div class="login-reminder">
             <span class="reminder">Please Sign In to Continue</span>
+        </div>
+    </div>
+</template>
+<template name="chatOverlay">
+    <div class="chat-overlay {{overlay_class}}">
+        <div class="target-reminder">
+            <span class="reminder">Please Select a Chat Partner</span>
         </div>
     </div>
 </template>
@@ -37,12 +44,11 @@
             <div class="input-container">
                 {{> input}}
             </div>
+            {{> chatOverlay}}
         </div>
     </div>
 </template>
 <template name="friendlist">
-    <div class="searchblock">
-    </div>
     {{#each friends}}
     <div class="friendblock {{selected}}">
         <div class="friend clickable selectuser">

@@ -21,15 +21,38 @@ div.overlay {
     opacity: 1.0;
 }
 
+.chat-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0;
+    background: darkgray;
+    opacity: 1.0;
+}
+
 .hidden {
     display: none;
 }
 
 .login-reminder {
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%,-50%);
+    padding:25px 25px;
+    border-radius:50px;
+    border:4px solid white;
+}
+
+.target-reminder {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding:25px 25px;
+    border-radius:50px;
+    border:4px solid white;
 }
 
 .reminder {
@@ -198,10 +221,8 @@ div.overlay {
 
 .message-container {
     flex-grow: 1;
-
     display: flex;
     flex-direction: row;
-    overflow-y: auto;
 }
 
 .input-container {

@@ -123,9 +123,15 @@ if (Meteor.isClient) {
         }
     });
 
-    Template.over.helpers({
+    Template.totalOverlay.helpers({
         'overlay_class': function() {
             return Meteor.user() ? 'hidden' : '';
+        }
+    });
+
+    Template.chatOverlay.helpers({
+        'overlay_class': function() {
+            return Session.get("chat_target") ? 'hidden' : '';
         }
     });
 
