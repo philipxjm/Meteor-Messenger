@@ -73,6 +73,7 @@ div.overlay {
 }
 
 .app-container {
+    max-height: calc(100% - 50px);
     display: flex;
     flex-grow: 1;
 }
@@ -94,7 +95,19 @@ div.overlay {
     border-top: 1px solid lightgray;
     background-color: white;
     flex-grow: 1;
+    flex-basis: 0px;
     padding: 0px;
+    overflow-y: auto;
+}
+
+.friendbox {
+    display: flex;
+    flex: 1;
+    flex-basis: 0px;
+    height: min-content;
+    flex-direction: column;
+    padding: 0px;
+    margin: 0px;
     overflow-y: auto;
 }
 

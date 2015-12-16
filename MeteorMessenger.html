@@ -49,16 +49,18 @@
     </div>
 </template>
 <template name="friendlist">
-    {{#each friends}}
-    <div class="friendblock {{selected}}">
-        <div class="friend clickable selectuser">
-            <img class="float-left" id="profimg" src="{{gravatarurl}}" alt="profpic" />
-            <div class="friend-info-container">
-                <span class="friend-name navbar-text">{{username}}</span>
+    <div class="friendbox">
+        {{#each friends}}
+        <div class="friendblock {{selected}}">
+            <div class="friend clickable selectuser">
+                <img class="float-left" id="profimg" src="{{gravatarurl}}" alt="profpic" />
+                <div class="friend-info-container">
+                    <span class="friend-name navbar-text">{{username}}</span>
+                </div>
             </div>
         </div>
+        {{/each}}
     </div>
-    {{/each}}
 </template>
 <template name="friend">
 </template>
