@@ -21,3 +21,6 @@ insecure                # Allow all DB writes from clients (for prototyping)
 accounts-password
 accounts-ui
 twbs:bootstrap
+jparker:gravatar
+react-template-helper
+mizzao:user-status

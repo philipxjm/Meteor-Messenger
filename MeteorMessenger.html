@@ -6,7 +6,15 @@
     <div class="bodywrapper">
         {{> nav}} {{> chat}}
     </div>
+    {{> over}}
 </body>
+<template name="over">
+    <div class="overlay {{overlay_class}}">
+        <div class="login-reminder">
+            <span class="reminder">Please Sign In to Continue</span>
+        </div>
+    </div>
+</template>
 <template name="nav">
     <nav class="navbar navbar-default">
         <a class="navbar-brand" href="#">Meteor Messenger</a>
@@ -33,8 +41,18 @@
     </div>
 </template>
 <template name="friendlist">
-    <div>
+    <div class="searchblock">
     </div>
+    {{#each friends}}
+    <div class="friendblock {{selected}}">
+        <div class="friend clickable selectuser">
+            <img class="float-left" id="profimg" src="{{gravatarurl}}" alt="profpic" />
+            <div class="friend-info-container">
+                <span class="friend-name navbar-text">{{username}}</span>
+            </div>
+        </div>
+    </div>
+    {{/each}}
 </template>
 <template name="friend">
 </template>
@@ -48,13 +66,10 @@
 </template>
 <template name="informationbar">
     <div class="profileinfo-container">
-        {{> profilepic}}
+        <img id="profimg" src="{{gravatarurl}}" alt="profpic" />
         <div id="chat-information-container">
-            <div id="chatname" class="col-xs-2">
-                <span id="chatname-text">Philip Xu</span>
-            </div>
-            <div id="chatstatus" class="col-xs-1">
-                <span id="chatstatus-text">Active</span>
+            <div id="chatname" class="navbar-brand">
+                <span id="chatname-text">{{chat_target}}</span>
             </div>
         </div>
     </div>
@@ -64,12 +79,12 @@
         <div class="message-block-container">
             {{#each messages}}
             <div class="{{messageFromToBlockClass}}">
-                <div class="message-bubble {{messageFromToBubbleClass}}" data-toggle="tooltip" data-placement="left" title="{{timestamp}}" data-original-title="{{timestamp}}"><span>{{msg}}</span></div>
+                <div class="message-bubble {{messageFromToBubbleClass}}" data-toggle="tooltip" data-placement="{{tooltip_placement}}" title="{{timestamp}}" data-original-title="{{timestamp}}"><span>{{msg}}</span></div>
             </div>
             {{/each}}
         </div>
     </div>
 </template>
 <template name="profilepic">
-    <img id="profimg" src="" alt="profpic" />
+    <img id="profimg" src="{{gravatarurl}}" alt="profpic" />
 </template>

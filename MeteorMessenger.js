@@ -7,9 +7,6 @@ if (Meteor.isClient) {
         passwordSignupFields: "USERNAME_ONLY"
     });
 
-    //temp chat-target set
-    Session.set("chat_target", "Dovahkiin");
-
     Template.input.events({
         'click .sendMsg': function(e) {
             sendMessage();
@@ -37,7 +34,9 @@ if (Meteor.isClient) {
 
     Template.messages.rendered = function() {
         $('[data-toggle="tooltip"]').tooltip();
-        $('body').tooltop({selector: '.message-bubble'});
+        $('body').tooltip({
+            selector: '.message-bubble'
+        });
     }
 
     Template.messages.helpers({
@@ -45,8 +44,10 @@ if (Meteor.isClient) {
             try {
                 return Messages.find({
                     $or: [{
-                        user: Meteor.user().username
+                        user: Meteor.user().username,
+                        chat_target: Session.get("chat_target")
                     }, {
+                        user: Session.get("chat_target"),
                         chat_target: Meteor.user().username
                     }]
                 }, {
@@ -66,6 +67,65 @@ if (Meteor.isClient) {
         },
         messageFromToBlockClass: function() {
             return this.user == Meteor.user().username ? 'message-block-to' : 'message-block-from';
+        },
+        tooltip_placement: function() {
+            return this.user == Meteor.user().username ? 'left' : 'right';
+        }
+    });
+
+    Template.friendlist.helpers({
+        'friends': function() {
+            return Meteor.users.find({
+                username: {
+                    $ne: Meteor.user().username
+                }
+            }, {
+                sort: {
+                    username: 1
+                }
+            });
+        },
+        'gravatarurl': function() {
+            var url = Gravatar.imageUrl(this.username + '@example.com', {
+                size: 49,
+                default: 'identicon'
+            });
+            return url;
+        },
+        'selected': function() {
+            return Session.get("chat_target") == this.username ? 'selected' : '';
+        }
+    });
+
+    Template.friendlist.events({
+        'click .selectuser': function() {
+            Session.set("chat_target", this.username);
+            console.log(this.username)
+        }
+    })
+
+    Template.informationbar.helpers({
+        'gravatarurl': function() {
+            if (!Session.get("chat_target")) {
+                return Gravatar.imageUrl('hi@example.com', {
+                    size: 49,
+                    default: 'blank'
+                });;
+            }
+            var url = Gravatar.imageUrl(Session.get("chat_target") + '@example.com', {
+                size: 49,
+                default: 'identicon'
+            });
+            return url;
+        },
+        'chat_target': function() {
+            return Session.get("chat_target");
+        }
+    });
+
+    Template.over.helpers({
+        'overlay_class': function() {
+            return Meteor.user() ? 'hidden' : '';
         }
     });
 
@@ -74,6 +134,10 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
     Meteor.startup(function() {
-        Messages.remove({});
+        Meteor.publish("userStatus", function() {
+            return Meteor.users.find({
+                "status.online": true
+            }, {});
+        });
     });
 }
